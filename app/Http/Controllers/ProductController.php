@@ -18,6 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::get();
+        $this->authorize('view',Product::class);
         return view('products.index');
     }
 
@@ -26,6 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $this->authorize('create',Product::class);
         return view('products.create');
     }
 }

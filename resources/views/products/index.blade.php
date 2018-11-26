@@ -2,6 +2,6 @@
 @section('dashboard-title','Products')
 @section('dashboard-body')
     <div class="text-center mb-3">
-        <a href="#">Create New Product</a>
+        <a href="{{route('products.create')}}">Create New Product</a>
     </div>
 @endsection
