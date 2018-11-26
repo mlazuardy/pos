@@ -24,9 +24,14 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        //
+        return $user->role_id === 1;
     }
 
+
+    public function edit(User $user,User $model)
+    {
+        return $user->id === $model->id;
+    }
     /**
      * Determine whether the user can create models.
      *
@@ -59,7 +64,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        //
+        return $user->role_id === 1;
     }
 
     /**
