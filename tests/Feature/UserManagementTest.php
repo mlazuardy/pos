@@ -48,10 +48,12 @@ class UserManagementTest extends TestCase
         $sales = $this->createRole(2);
         $selfUser = $this->createRole(3);
         $data = [
-            'name' => 'sales'
+            'name' => 'sales',
+            'email' => 'hahahehe@gmail.com',
+            'role_id' => 3,
         ];
         $this->actingAs($superAdmin);//change this to $selfUser also passed the test
-        $this->patch(route('users.update',$selfUser->id),$data)->assertStatus(301);
+        $this->patch(route('users.update',$selfUser->id),$data)->assertStatus(302);
     }
 
     public function createRole($role_id)
