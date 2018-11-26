@@ -13,6 +13,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::withTrashed()->paginate(15);
+        $this->authorize('view',User::class);
         return view('users.index',compact('users'));
     }
 

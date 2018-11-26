@@ -20,6 +20,11 @@ class UserPolicy
     {
         return $user->id === $model->id;
     }
+
+    public function view(User $user)
+    {
+        return $user->role_id === 1;
+    }
     /**
      * Determine whether the user can create models.
      *
