@@ -51,7 +51,7 @@ class UserManagementTest extends TestCase
         $data = [
             'name' => 'sales'
         ];
-        $this->actingAs($superAdmin);
+        $this->actingAs($anotherSales);
         $this->postJson(route('users.update',$selfUser->id),$data)->assertStatus(201);
     }
 

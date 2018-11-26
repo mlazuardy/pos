@@ -9,6 +9,12 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user,$ability)
+    {
+        if($user->superAdmin()){
+            return true;
+        }
+    }
     /**
      * Determine whether the user can view the model.
      *
@@ -41,7 +47,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        return $user->role_id === 1 || $user->id === $model->id;
+        return $user->id === $model->id;
     }
 
     /**
