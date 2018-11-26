@@ -36,7 +36,7 @@ class UserController extends Controller
         $validated = $request->validated();
         $user->fill($validated);
         $user->save();
-        return back();
+        return back()->with('success','Successfuly Creating New User');
         
     }
 
