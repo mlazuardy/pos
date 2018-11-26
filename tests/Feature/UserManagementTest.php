@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\User;
 
 class UserManagementTest extends TestCase
 {
@@ -37,6 +38,21 @@ class UserManagementTest extends TestCase
         ];
         $this->actingAs($superAdmin);
         $this->postJson(route('users.store'),$data)->assertStatus(201);
+    }
+
+    /** @test */
+    public function super_admin_or_self_user_can_update_user()
+    {
+        $user = factory('App\User');
+        $superAdmin = $user->create(['role_id'=>1]);//Pass if using this in actingAs
+        $selfUser = $user->create(['role_id'=>2]);//Pass if using this in actingAs
+        $anotherSales = $user->create(['role_id' => 2]);//will not pass if using this,except user param == this variable
+
+        $data = [
+            'name' => 'sales'
+        ];
+        $this->actingAs($superAdmin);
+        $this->postJson(route('users.update',$selfUser->id),$data)->assertStatus(201);
     }
 
 }

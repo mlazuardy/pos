@@ -21,4 +21,16 @@ class UserController extends Controller
         ?
         response()->json($user,201): null;
     }
+
+    public function update($id)
+    {
+        $user = User::find($id);
+        $user->name = request('name');
+        $user->email  = request('email');
+        $this->authorize('update',$user);
+        return request()->wantsJson()
+        ?
+        response()->json($user,201): null;
+    }
+
 }

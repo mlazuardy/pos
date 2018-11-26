@@ -19,4 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/users','UserController@store')->name('users.store')->middleware('auth');
+Route::group(['middleware' => 'auth'],function(){
+    Route::post('/users','UserController@store')->name('users.store');
+    Route::post('/users/{id}','UserController@update')->name('users.update');
+});
