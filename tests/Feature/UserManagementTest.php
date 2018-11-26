@@ -5,12 +5,13 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\User;
 
 class UserManagementTest extends TestCase
 {
 
-    use RefreshDatabase;
+    use RefreshDatabase,DatabaseMigrations;
 
     /** @test */
     public function super_admin_can_create_new_user()
@@ -50,15 +51,6 @@ class UserManagementTest extends TestCase
         ];
         $this->actingAs($superAdmin);//change this to $selfUser also passed the test
         $this->patchJson(route('users.update',$selfUser->id),$data)->assertStatus(201);
-    }
-
-    /** @test */
-    public function super_admin_can_view_users_page()
-    {
-        $superAdmin = $this->createRole(1);
-        $this->actingAs($superAdmin);
-        $this->get(route('users.index'))
-        ->assertOk();
     }
 
     public function createRole($role_id)
