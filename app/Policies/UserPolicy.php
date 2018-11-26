@@ -24,7 +24,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        //
+        return $user->role_id === 1;
     }
 
     /**
