@@ -15,18 +15,6 @@ class UserPolicy
             return true;
         }
     }
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\User  $user
-     * @param  \App\User  $model
-     * @return mixed
-     */
-    public function view(User $user, User $model)
-    {
-        return $user->role_id === 1;
-    }
-
 
     public function edit(User $user,User $model)
     {
