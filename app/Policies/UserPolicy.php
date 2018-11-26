@@ -9,7 +9,7 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function before(User $user,$ability)
+    public function before($user,$ability)
     {
         if($user->superAdmin()){
             return true;
