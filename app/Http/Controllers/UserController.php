@@ -59,7 +59,7 @@ class UserController extends Controller
         ]);
         $user->fill($validation);
         $user->save();
-        return back()->with('success','Successfuly Updated');
+        return redirect('/users')->with('success','Successfuly Updated');
     }
 
 }
