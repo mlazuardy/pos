@@ -35,4 +35,13 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Role');
     }
+
+    /**
+     * Is This User is Super Admin?
+     * $role_id === 1
+     */
+    public function superAdmin()
+    {
+        return $this->role_id === 1;
+    }
 }
