@@ -51,7 +51,7 @@ class UserManagementTest extends TestCase
             'name' => 'sales'
         ];
         $this->actingAs($superAdmin);//change this to $selfUser also passed the test
-        $this->patchJson(route('users.update',$selfUser->id),$data)->assertStatus(201);
+        $this->patch(route('users.update',$selfUser->id),$data)->assertStatus(301);
     }
 
     public function createRole($role_id)
