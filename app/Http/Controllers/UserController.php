@@ -43,19 +43,23 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
+        $roles = Role::get();
         $this->authorize('update',$user);
-        return view('users.edit',compact('user'));
+        return view('users.edit',compact('user','roles'));
     }
 
     public function update(Request $request,$id)
     {
         $user = User::find($id);
-        $user->name = request('name');
-        $user->email  = request('email');
-        $this->authorize('update',$user);
-        return request()->wantsJson()
-        ?
-        response()->json($user,201): null;
+        $this->authorize('update', $user);
+        $validation = $this->validate(request(),[
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'role_id' => 'required',
+        ]);
+        $user->fill($validation);
+        $user->save();
+        return back()->with('success','Successfuly Updated');
     }
 
 }

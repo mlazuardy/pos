@@ -13,6 +13,14 @@
             <input type="email" name="email" value="{{old('email',$user->email)}}" class="form-control">
         </div>
         <div class="form-group">
+            <label for="role">Role</label>
+            <select name="role_id" class="form-control">
+                @foreach ($roles as $role)
+                    <option value="{{$role->id}}" {{$role->id == $user->role_id || $role->id == old('role_id') ? 'selected' :'' }} >{{$role->name}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             <button type="submit" class="btn btn-primary">Update</button>
         </div>
     </form>
