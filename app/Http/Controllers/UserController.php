@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
+use App\Http\Requests\StoreUserRequest;
 
 class UserController extends Controller
 {
@@ -22,25 +24,20 @@ class UserController extends Controller
 
     public function create()
     {
-        $user = new User;
-        
-        $this->authorize('create',$user);
-        return view('users.create');
+        $roles = Role::get();
+        $this->authorize('create',User::class);
+        return view('users.create',compact('roles'));
     }
 
-    public function store()
+    public function store(StoreUserRequest $request)
     {
-        $user = User::create([
-            'name' => request('name'),
-            'role_id' => request('role_id'),
-            'email' => request('email'),
-            'password' => \Hash::make(request('password')),
-
-        ]);
+        $user = new User();
         $this->authorize('create',$user);
-        return request()->wantsJson()
-        ?
-        response()->json($user,201): null;
+        $validated = $request->validated();
+        $user->fill($validated);
+        $user->save();
+        return back();
+        
     }
 
     public function edit($id)

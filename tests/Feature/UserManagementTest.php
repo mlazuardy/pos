@@ -34,10 +34,11 @@ class UserManagementTest extends TestCase
             'name' => 'bebas',
             'email' => 'tes@gmail.com',
             'password' => 'password',
+            'password_confirmation' => 'password',
             'role_id' => 3,
         ];
         $this->actingAs($superAdmin);
-        $this->postJson(route('users.store'),$data)->assertStatus(201);
+        $this->post(route('users.store'),$data)->assertStatus(302);
     }
 
     /** @test */
