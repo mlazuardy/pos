@@ -12,6 +12,7 @@
                     Users
                 </a>
                 @endcan
+                <a href="{{route('products.index')}}" class="list-group-item list-group-item-action">Products</a>
             </div>
         </div>
         <div class="col-md-10">
