@@ -62,4 +62,12 @@ class UserController extends Controller
         return redirect('/users')->with('success','Successfuly Updated');
     }
 
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $this->authorize('delete',$user);
+        $user->delete();
+        return redirect('/users')->with('success','User has been move to trash');
+    }
+
 }

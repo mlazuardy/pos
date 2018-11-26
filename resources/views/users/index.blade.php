@@ -17,9 +17,9 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($users as $key => $user)
+            @foreach ($users->where('id', '!=' ,auth()->id()) as $key => $user)
             <tr>
-                <td>{{$key+1}}</td>
+                <td>{{$key}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->role->name}}</td>
                 <td>
@@ -28,7 +28,13 @@
                 <td>
                     <a href="{{route('users.edit',$user->id)}}">Edit</a>
                 </td>
-                <td>Delete</td>
+                <td>
+                    <form action="{{route('users.destroy',$user->id)}}" method="post">
+                        @csrf
+                        @method("DELETE")
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>
