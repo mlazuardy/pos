@@ -15,7 +15,6 @@ class UserManagementTest extends TestCase
     /** @test */
     public function super_admin_can_create_new_user()
     {
-        $user = factory('App\User');
         /**
          * Only Super Admin/ Role_id 1 can create user
          * Every Role that doesnt have role_id 1 will be throw error
@@ -26,9 +25,9 @@ class UserManagementTest extends TestCase
          * but, using 2nd and 3rd ($sales or $produksi) will throw an error
          * 'This action is unauthorize'
          */
-        $superAdmin = $user->make(['role_id' => 1]);
-        $sales = $user->make(['role_id' => 2]);
-        $produksi = $user->make(['role_id' => 3]);
+        $superAdmin = $this->createRole(1);
+        $sales = $this->createRole(2);
+        $produksi = $this->createRole(3);
 
         $data = [
             'name' => 'bebas',
@@ -43,16 +42,28 @@ class UserManagementTest extends TestCase
     /** @test */
     public function super_admin_or_self_user_can_update_user()
     {
-        $user = factory('App\User');
-        $superAdmin = $user->create(['role_id'=>1]);//Pass if using this in actingAs
-        $selfUser = $user->create(['role_id'=>2]);//Pass if using this in actingAs
-        $anotherSales = $user->create(['role_id' => 2]);//will not pass if using this,except user param == this variable
-
+        $superAdmin = $this->createRole(1);
+        $sales = $this->createRole(2);
+        $selfUser = $this->createRole(3);
         $data = [
             'name' => 'sales'
         ];
-        $this->actingAs($anotherSales);
-        $this->postJson(route('users.update',$selfUser->id),$data)->assertStatus(201);
+        $this->actingAs($superAdmin);//change this to $selfUser also passed the test
+        $this->patchJson(route('users.update',$selfUser->id),$data)->assertStatus(201);
+    }
+
+    /** @test */
+    public function super_admin_can_view_users_page()
+    {
+        $superAdmin = $this->createRole(1);
+        $this->actingAs($superAdmin);
+        $this->get(route('users.index'))
+        ->assertOk();
+    }
+
+    public function createRole($role_id)
+    {
+        return factory('App\User')->create(['role_id' => $role_id]);
     }
 
 }

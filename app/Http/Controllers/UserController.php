@@ -12,7 +12,12 @@ class UserController extends Controller
     {
         $users = User::paginate(15);
         $this->authorize('view',\Auth::user());
-        return view('users.index',compact('users'));
+        return response($users);
+    }
+
+    public function show()
+    {
+        return "Oke";
     }
 
     public function store()
@@ -30,7 +35,7 @@ class UserController extends Controller
         response()->json($user,201): null;
     }
 
-    public function update($id)
+    public function update(Request $request,$id)
     {
         $user = User::find($id);
         $user->name = request('name');
