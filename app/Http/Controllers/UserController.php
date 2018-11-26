@@ -7,6 +7,13 @@ use App\User;
 
 class UserController extends Controller
 {
+
+    public function index()
+    {
+        $users = User::get();
+        return view('users.index',compact('users'));
+    }
+
     public function store()
     {
         $user = User::create([
