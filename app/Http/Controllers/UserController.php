@@ -12,7 +12,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::paginate(15);
+        $users = User::withTrashed()->paginate(15);
         $this->authorize('view',\Auth::user());
         return view('users.index',compact('users'));
     }
@@ -36,7 +36,8 @@ class UserController extends Controller
         $validated = $request->validated();
         $user->fill($validated);
         $user->save();
-        return back()->with('success','Successfuly Creating New User');
+        alert()->success('Successfully Created', 'Success!')->persistent('close');
+        return back()->with('success','Successfully Creating New User');
         
     }
 
@@ -59,7 +60,8 @@ class UserController extends Controller
         ]);
         $user->fill($validation);
         $user->save();
-        return redirect('/users')->with('success','Successfuly Updated');
+        alert()->success('Successfully Updated', 'Success!')->persistent('close');
+        return redirect('/users')->with('success','Successfully Updated');
     }
 
     public function destroy($id)
@@ -67,7 +69,8 @@ class UserController extends Controller
         $user = User::find($id);
         $this->authorize('delete',$user);
         $user->delete();
-        return redirect('/users')->with('success','User has been move to trash');
+        alert()->success('User has been move to bin', 'Success!')->persistent('close');
+        return redirect('/users')->with('success','User has been move to bin');
     }
 
 }

@@ -7,9 +7,11 @@
                 <a href="/home" class="list-group-item list-group-item-action">
                     Dashboard
                 </a>
+                @can('view',App\User::class)
                 <a href="{{route('users.index')}}" class="list-group-item list-group-item-action">
                     Users
                 </a>
+                @endcan
             </div>
         </div>
         <div class="col-md-8">

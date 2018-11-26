@@ -18,10 +18,11 @@
         </thead>
         <tbody>
             @foreach ($users->where('id', '!=' ,auth()->id()) as $key => $user)
-            <tr>
+            <tr {{$user->trashed() ? 'class=table-warning' : '' }}>
                 <td>{{$key}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->role->name}}</td>
+                @if(!$user->trashed())
                 <td>
                     <a href="{{route('users.show',$user->id)}}">Show</a>
                 </td>
@@ -35,6 +36,11 @@
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </td>
+                @else
+                    <td colspan="3">
+                        This User has been move to bin
+                    </td>
+                @endif
             </tr>
             @endforeach
         </tbody>
