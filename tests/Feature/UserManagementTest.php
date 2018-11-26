@@ -19,6 +19,7 @@ class UserManagementTest extends TestCase
          * Only Super Admin/ Role_id 1 can create user
          * Every Role that doesnt have role_id 1 will be throw error
          * Choose the 3 variable below to test using role_id 1/2/or 3
+         * By Uncomment single line comment below
          * change the $this->actingAs() to your choosen variable
          * Expectation = using the first/$superAdmin will OK the test
          * but, using 2nd and 3rd ($sales or $produksi) will throw an error
