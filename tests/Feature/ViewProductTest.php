@@ -6,12 +6,12 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class CreateProductTest extends TestCase
+class ViewProductTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function produksi_can_create_product()
+    public function produksi_can_view_product_page()
     {
         $produksi = $this->createRole(3);
 
@@ -20,7 +20,7 @@ class CreateProductTest extends TestCase
     }
 
     /** @test */
-    public function super_admin_can_create_product()
+    public function super_admin_can_view_product_page()
     {
         $superAdmin = $this->createRole(1);
 
@@ -29,7 +29,7 @@ class CreateProductTest extends TestCase
     }
 
     /** @test */
-    public function sales_cant_create_product()
+    public function sales_cant_view_product_page()
     {
         $this->withExceptionHandling();
         $superAdmin = $this->createRole(2);
