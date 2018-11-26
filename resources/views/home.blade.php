@@ -3,13 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action active">
-                    Dashboard
-                </a>
-            </div>
-        </div>
+        @include('users.partials.sidenav')
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-center">Dashboard</div>
