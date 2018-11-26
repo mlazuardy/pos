@@ -44,4 +44,12 @@ class User extends Authenticatable
     {
         return $this->role_id === 1;
     }
+
+    /**
+     * set password when create
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = \Hash::make($password);
+    }
 }
