@@ -1,6 +1,11 @@
 @extends('users.partials._layout')
 @section('dashboard-title',"Edit {$user->name}")
 @section('dashboard-body')
+    @if ($errors->any())
+        @foreach ($errors->all as $item)
+            <p>{{$item}}</p>
+        @endforeach
+    @endif
     <form action="{{route('users.update',$user->id)}}" method="post">
         @csrf
         @method('PATCH')
