@@ -13,11 +13,13 @@
                 </a>
                 @endcan
                 @can('view',App\Product::class)
-                <a href="{{route('products.index')}}" class="list-group-item list-group-item-action">Products</a>
+                    <a href="{{route('products.index')}}" class="list-group-item list-group-item-action">Products</a>
                 @endcan
-                <a href="{{route('customers.index')}}" class="list-group-item list-group-item-action">
-                    Customers
-                </a>
+                @can('view',App\Customer::class)
+                    <a href="{{route('customers.index')}}" class="list-group-item list-group-item-action">
+                        Customers
+                    </a>
+                @endcan
             </div>
         </div>
         <div class="col-md-10">
