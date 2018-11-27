@@ -63,6 +63,7 @@ class ProductController extends Controller
         return view('products.edit',compact('product'));
     }
 
+    /**Update From Edit Page */
     public function update(CreateProductRequest $request,$id)
     {
         $product = Product::findOrFail($id);
@@ -83,6 +84,11 @@ class ProductController extends Controller
         return redirect('products/');
     }
 
+    /** 
+     * 
+     * Soft Deleting 
+     * 
+     */
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
@@ -92,6 +98,9 @@ class ProductController extends Controller
         return redirect('/products');
     }
 
+    /**
+     * Import Product from excel
+     */
     public function importProducts()
     {
         Excel::import(new ProductsImport,request()->file('excel'));
