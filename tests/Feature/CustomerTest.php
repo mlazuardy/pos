@@ -18,4 +18,11 @@ class CustomerTest extends TestCase
         $this->actingAs($superAdmin)->get(route('customers.index'))->assertOk();
     }
 
+    /** @test */
+    public function sales_can_view_customer_page()
+    {
+        $sales = factory('App\User')->create(['role_id' => 2]);
+        $this->actingAs($sales)->get(route('customers.index'))->assertOk();
+    }
+
 }
