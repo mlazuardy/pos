@@ -80,4 +80,14 @@ class ProductController extends Controller
         alert()->success('Edit Product Success','Success!');
         return redirect('products/');
     }
+
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+        $this->authorize('delete',$product);
+        $product->delete();
+        alert()->success('Move Product to Bin','Success');
+        return redirect('/products');
+
+    }
 }

@@ -21,6 +21,11 @@
                             Berat: {{$product->berat}}
                         </p>
                         <a href="{{route('products.edit',$product->id)}}" class="btn btn-primary">Edit</a>
+                        <form action="{{route('products.destroy',$product->id)}}" method="post">
+                            @csrf
+                            @method("DELETE")
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>
