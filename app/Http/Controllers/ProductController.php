@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Http\Requests\CreateProductRequest;
+use Excel;
+use App\Imports\ProductsImport;
 
 class ProductController extends Controller
 {
@@ -88,6 +90,10 @@ class ProductController extends Controller
         $product->delete();
         alert()->success('Move Product to Bin','Success');
         return redirect('/products');
+    }
 
+    public function importProducts()
+    {
+        Excel::import(new ProductsImport,request()->file('excel'));
     }
 }
