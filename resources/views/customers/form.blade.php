@@ -7,7 +7,7 @@
         <p>{{$item}}</p>
     @endforeach
 @endif
-    <form action="{{route($create ? 'customers.store' : 'customers.edit',$customer->id)}}" method="post">
+    <form action="{{route($create ? 'customers.store' : 'customers.update',$customer->id)}}" method="post">
         @csrf
         @if(!$create)
             @method('PATCH')
