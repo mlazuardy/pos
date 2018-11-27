@@ -9,6 +9,7 @@ class CustomerController extends Controller
 {
     public function index()
     {
+        $this->authorize('view',Customer::class);
         return view('customers.index');
     }
 }
