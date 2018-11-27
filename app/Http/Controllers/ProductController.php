@@ -51,10 +51,31 @@ class ProductController extends Controller
         return redirect('/products');
     }
 
+    /**
+     * Edit Page
+     */
     public function edit($id)
     {
         $product = Product::findOrFail($id);
         $this->authorize('update',$product);
         return view('products.edit',compact('product'));
+    }
+
+    public function update(CreateProductRequest $request,$id)
+    {
+        $product = Product::findOrFail($id);
+        $this->authorize('update',$product);
+        $validated = $request->validated();
+        $product->fill($validated);
+        $image = storage_path('app/public/'.$product->image);
+        if($request->file('image')){
+            unlink($image);
+            $newImage = $request->file('image');
+            $newImage->store('public/products/');
+            $product->image = $newImage->hashName('products/');
+        }
+        $product->save();
+        alert()->success('Edit Product Success','Success!');
+        return redirect('products/');
     }
 }
