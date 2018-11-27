@@ -15,8 +15,12 @@
     <div class="form-group">
         <label for="product">Product Name</label>
         <select name="product_id" class="form-control">
-            @foreach ($products as $product)
-                <option value="{{$product->id}}">{{$product->name}}</option>
+             @foreach ($products as $product)
+                @if($create)
+                <option value="{{$product->id}}" {{ $product->id == old( 'product_id') ? 'selected' : '' }} >{{$product->name}}</option>
+                @else
+                <option value="{{$product->id}}" {{$transaction->product_id == $product->id || $product->id == old('product_id') ? 'selected' :''}} >{{$product->name}}</option>
+                @endif
             @endforeach
         </select>
     </div>
@@ -24,10 +28,10 @@
     <div class="form-group">
         <label for="customer">Customer Name</label>
         <select name="customer_id" class="form-control">
-                @foreach ($customers as $customer)
-                    <option value="{{$customer->id}}">{{$customer->name}}</option>
-                @endforeach
-            </select>
+            @foreach ($customers as $customer)
+                <option value="{{$customer->id}}" {{ old('customer_id') == $customer->id ? 'selected' : '' }} >{{$customer->name}}</option>
+            @endforeach
+        </select>
     </div>
     @endif
     <div class="form-group">
