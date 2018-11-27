@@ -50,4 +50,10 @@ class ProductController extends Controller
         alert()->success('New Product Added','Success');
         return redirect('/products');
     }
+
+    public function edit($id)
+    {
+        $product = Product::findOrFail($id);
+        $this->authorize('update',$product);
+    }
 }
