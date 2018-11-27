@@ -20,6 +20,9 @@
                         Customers
                     </a>
                 @endcan
+                @can('view',App\Transaction::class)
+                    <a href="{{route('transactions.index')}}" class="list-group-item list-group-item-action">Transactions</a>
+                @endcan
             </div>
         </div>
         <div class="col-md-10">

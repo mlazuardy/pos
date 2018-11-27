@@ -17,6 +17,7 @@ class TransactionController extends Controller
     public function index()
     {
         $transactions = Transaction::paginate(16);
+        $this->authorize('view',Transaction::class);
         return view('transactions.index',compact('transactions'));
     }
 
