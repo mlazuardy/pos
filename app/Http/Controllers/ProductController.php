@@ -38,11 +38,7 @@ class ProductController extends Controller
         $product = new Product();
         $this->authorize('create',Product::class);
         $product->fill($validated);
-        if($request->hasFile('image')){
-            $image = $request->file('image');
-            $image->store('public/products/');
-            $product->image = $image->hashName('products/');
-        }
+       
         $product->save();
         alert()->success('New Product Added','Success');
         return redirect('/products');
@@ -65,15 +61,6 @@ class ProductController extends Controller
         $this->authorize('update',$product);
         $validated = $request->validated();
         $product->fill($validated);
-        $image = storage_path('app/public/'.$product->image);
-        if($request->file('image')){
-            if(basename($image) != 'default.jpg'){
-                unlink($image);
-            }
-            $newImage = $request->file('image');
-            $newImage->store('public/products/');
-            $product->image = $newImage->hashName('products/');
-        }
         $product->save();
         alert()->success('Edit Product Success','Success!');
         return redirect('products/');
