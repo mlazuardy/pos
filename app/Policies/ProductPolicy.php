@@ -62,7 +62,7 @@ class ProductPolicy
      */
     public function delete(User $user, Product $product)
     {
-        //
+        return $user->role_id === 3;
     }
 
     /**
