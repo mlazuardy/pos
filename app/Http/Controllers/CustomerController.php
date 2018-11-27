@@ -11,8 +11,9 @@ class CustomerController extends Controller
     /** customer resources */
     public function index()
     {
+        $customers = Customer::paginate(20);
         $this->authorize('view',Customer::class);
-        return view('customers.index');
+        return view('customers.index',compact('customers'));
     }
 
     /**
