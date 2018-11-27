@@ -22,5 +22,6 @@ Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'],function(){
     Route::resource('users','UserController');
     Route::post('/importProducts','ProductController@importProducts')->name('products.import');
+    Route::resource('products', 'ProductController');
+    Route::resource('customers','CustomerController');
 });
-Route::resource('products','ProductController');
