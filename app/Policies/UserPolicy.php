@@ -9,28 +9,21 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function before(User $user,$ability)
+    public function before($user,$ability)
     {
         if($user->superAdmin()){
             return true;
         }
     }
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\User  $user
-     * @param  \App\User  $model
-     * @return mixed
-     */
-    public function view(User $user, User $model)
-    {
-        return $user->role_id === 1;
-    }
-
 
     public function edit(User $user,User $model)
     {
         return $user->id === $model->id;
+    }
+
+    public function view(User $user)
+    {
+        return $user->role_id === 1;
     }
     /**
      * Determine whether the user can create models.

@@ -16,21 +16,21 @@ class UsersTableSeeder extends Seeder
             'role_id' => 1,
             'name' => 'Michael Lazuardy',
             'email' => 'michael@tampan.com',
-            'password' => Hash::make('itsuperadmin'),
+            'password' => 'superadmin'
         ]);
 
         $sales = User::create([
             'role_id' => 2,
             'name' => 'Super Sales',
             'email' => 'sales@tidaktampan.com',
-            'password' => Hash::make('salesstandar'),
+            'password' => 'salesstandar'
         ]);
 
         $produksi = User::create([
             'role_id' => 3,
             'name' => 'Super Produksi',
             'email' => 'produksi@standar.com',
-            'password' => Hash::make('produksiyeah'),
+            'password' => 'produksiyeah',
         ]);
     }
 }
