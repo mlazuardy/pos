@@ -12,4 +12,12 @@ class Customer extends Model
     protected $dates = ['deleted_at'];
 
     protected $guarded = [];
+
+    /**
+     * Customer has many transaction
+     */
+    public function transactions()
+    {
+        return $this->hasMnany('App\Transaction');
+    }
 }

@@ -13,4 +13,12 @@ class Product extends Model
 
     protected $guarded = [];
 
+    /**
+     * Product Has Many Transaction
+     */
+    public function transactions()
+    {
+        return $this->hasMany('App\Transaction');
+    }
+
 }
