@@ -85,11 +85,14 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreTransactionRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $transaction = Transaction::findOrFail($id);
         $this->authorize('update',$transaction);
-        $validated = $request->validated();
+        $validated = $request->validate([
+            'product_id' => 'required',
+            'quantity' => 'required|numeric|min:1',
+        ]);
         $transaction->fill($validated);
         $transaction->save();
         alert()->success('Update Transaction Success','Success!')->persistent('close');
@@ -104,6 +107,10 @@ class TransactionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $transaction = Transaction::findOrFail($id);
+        $this->authorize('delete',$transaction);
+        $transaction->delete();
+        alert()->success('Remove to Bin',"Success");
+        return redirect('/transactions');
     }
 }
