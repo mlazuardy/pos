@@ -25,4 +25,13 @@ class CustomerTest extends TestCase
         $this->actingAs($sales)->get(route('customers.index'))->assertOk();
     }
 
+    //Negative
+    /** @test */
+    public function produksi_cant_view_customer_page()
+    {
+        $this->withExceptionHandling();
+        $produksi = factory('App\User')->create(['role_id' => 3]);
+        $this->actingAs($produksi)->get(route('customers.index'))->assertStatus(403);
+    }
+
 }
