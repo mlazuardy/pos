@@ -48,4 +48,18 @@ class CustomerController extends Controller
         $this->authorize('update',$customer);
         return view('customers.edit',compact('customer'));
     }
+
+    /**
+     * update customer from edit page
+     */
+    public function update(CustomerRequest $request,$id)
+    {
+        $customer = Customer::findOrFail($id);
+        $validated = $request->validated();
+        $this->authorize('update',$customer);
+        $customer->fill($validated);
+        $customer->save();
+        alert()->success('Update Success','Success!');
+        return redirect('/customers');
+    }
 }
