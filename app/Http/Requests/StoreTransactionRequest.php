@@ -26,7 +26,7 @@ class StoreTransactionRequest extends FormRequest
         return [
             'product_id' => 'required',
             'customer_id' => 'required',
-            'quantity' => 'required',
+            'quantity' => 'required|min:1',
         ];
     }
 }
