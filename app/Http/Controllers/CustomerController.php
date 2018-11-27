@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Customer;
+use App\Http\Requests\CustomerRequest;
 
 class CustomerController extends Controller
 {
@@ -21,5 +22,16 @@ class CustomerController extends Controller
     {
         $this->authorize('create',Customer::class);
         return view('customers.create');
+    }
+
+    public function store(CustomerRequest $request)
+    {
+        $customer = new Customer();
+        $this->authorize('create',Customer::class);
+        $validated = $request->validated();
+        $customer->fill($validated);
+        $customer->save();
+        alert()->success('Successfully create new customer','Success!')->persistent('close');
+        return redirect('/customers');
     }
 }
