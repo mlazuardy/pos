@@ -62,4 +62,16 @@ class CustomerController extends Controller
         alert()->success('Update Success','Success!');
         return redirect('/customers');
     }
+    
+    /**
+     * Delete Customer with softDelete
+     */
+    public function destroy($id)
+    {
+        $customer = Customer::findOrFail($id);
+        $this->authorize('delete',$customer);
+        $customer->save();
+        alert()->success('Move customer to Bin','Success');
+        return redirect('/customers');
+    }
 }
