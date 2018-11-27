@@ -28,7 +28,11 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::where('stock', '>' ,0)->get();
+        $customers = Customer::get();
+        $transaction = new Transaction();
+        $this->authorize('create',Transaction::class);
+        return view('transactions.create',compact('products','customers','transaction'));
     }
 
     /**
