@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Http\Helpers;
-
 if(!function_exists('hasError')){
     function hasError($errors,$field,$class= "invalid-feedback"){
 

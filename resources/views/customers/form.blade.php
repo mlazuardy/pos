@@ -15,6 +15,7 @@
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" name="name" value="{{old('name',$customer->name)}}" class="form-control">
+            {!! hasError($errors,'name') !!}
         </div>
         <div class="form-group">
             <label for="email">Email</label>
