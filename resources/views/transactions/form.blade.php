@@ -20,17 +20,19 @@
             @endforeach
         </select>
     </div>
+    @if($create)
     <div class="form-group">
         <label for="customer">Customer Name</label>
         <select name="customer_id" class="form-control">
-            @foreach ($customers as $customer)
-                <option value="{{$customer->id}}">{{$customer->name}}</option>
-            @endforeach
-        </select>
+                @foreach ($customers as $customer)
+                    <option value="{{$customer->id}}">{{$customer->name}}</option>
+                @endforeach
+            </select>
     </div>
+    @endif
     <div class="form-group">
         <label for="quantity">Quantity</label>
-        <input type="number" name="quantity" min="0" class="form-control">
+        <input type="number" name="quantity" min="0" value="{{old('quantity',$transaction->quantity)}}" class="form-control">
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Save</button>

@@ -72,7 +72,10 @@ class TransactionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $transaction = Transaction::findOrFail($id);
+        $products = Product::where('stock','>' ,0)->get();
+        $this->authorize('update',$transaction);
+        return view('transactions.edit',compact('transaction','products'));
     }
 
     /**
