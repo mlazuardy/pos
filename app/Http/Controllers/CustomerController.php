@@ -70,7 +70,7 @@ class CustomerController extends Controller
     {
         $customer = Customer::findOrFail($id);
         $this->authorize('delete',$customer);
-        $customer->save();
+        $customer->delete();
         alert()->success('Move customer to Bin','Success');
         return redirect('/customers');
     }
