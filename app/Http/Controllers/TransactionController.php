@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Customer;
 use App\Transaction;
 use App\Product;
+use App\Http\Requests\StoreTransactionRequest;
 
 class TransactionController extends Controller
 {
@@ -41,9 +42,15 @@ class TransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTransactionRequest $request)
     {
-        //
+        $transaction = new Transaction();
+        $this->authorize('create',Transaction::class);
+        $validated = $request->validated();
+        $transaction->fill($validated);
+        $transaction->save();
+        alert()->success('Successfully create Transaction','Success!')->persistent('close');
+        return redirect('/transactions');
     }
 
     /**
