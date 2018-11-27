@@ -55,5 +55,6 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $this->authorize('update',$product);
+        return view('products.edit',compact('product'));
     }
 }
