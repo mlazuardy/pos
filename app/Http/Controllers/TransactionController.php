@@ -85,9 +85,15 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreTransactionRequest $request, $id)
     {
-        //
+        $transaction = Transaction::findOrFail($id);
+        $this->authorize('update',$transaction);
+        $validated = $request->validated();
+        $transaction->fill($validated);
+        $transaction->save();
+        alert()->success('Update Transaction Success','Success!')->persistent('close');
+        return redirect('/transactions');
     }
 
     /**
