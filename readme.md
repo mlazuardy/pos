@@ -8,12 +8,12 @@ composer install/update
 untuk menampilkan validasi satuan di laravel biasa menggunakan
 
 ```
- @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                                ```
+@if ($errors->has('password'))
+<span class="invalid-feedback" role="alert">
+    <strong>{{ $errors->first('password') }}</strong>
+</span>
+@endif
+```
 buat helper untuk menampilkan validasi satuan di `app\Http\Helpers`
 untuk menampilkan error cukup menggunakan code
 ```
@@ -22,6 +22,10 @@ untuk menampilkan error cukup menggunakan code
 
 ## Queue
 Queue pada Import excel dilakukan ketika data yang diimport lebih dari 500
+
+## Observer
+Observer terdapat pada model Product, dimana pada saat file foto dimasukkan, maka foto baru akan disimpan,
+dan pada saat mengupdate foto, jika ada foto baru yang dimasukkan, maka foto lama akan terhapus, namun jika tidak maka foto lama tidak terhapus 
 
 ## Kekurangan
 TDD Tidak diterapkan secara menyeluruh
