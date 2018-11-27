@@ -25,6 +25,9 @@ class CustomerController extends Controller
         return view('customers.create');
     }
 
+    /**
+     * store from create page
+     */
     public function store(CustomerRequest $request)
     {
         $customer = new Customer();
@@ -34,5 +37,15 @@ class CustomerController extends Controller
         $customer->save();
         alert()->success('Successfully create new customer','Success!')->persistent('close');
         return redirect('/customers');
+    }
+
+    /**
+     * Edit customer
+     */
+    public function edit($id)
+    {
+        $customer = Customer::findOrFail($id);
+        $this->authorize('update',$customer);
+        return view('customers.edit',compact('customer'));
     }
 }
