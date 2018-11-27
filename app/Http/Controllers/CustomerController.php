@@ -22,7 +22,7 @@ class CustomerController extends Controller
     public function create()
     {
         $this->authorize('create',Customer::class);
-        return view('customers.create');
+        return view('customers.create',['customer' => new Customer()]);
     }
 
     /**
