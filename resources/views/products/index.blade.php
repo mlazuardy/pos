@@ -2,7 +2,7 @@
 @section('dashboard-title','Products')
 @section('dashboard-body')
     <div class="text-center mb-3">
-        <a href="{{route('products.create')}}">Create New Product</a>
+        <a href="{{route('products.create')}}" class="btn btn-primary">Create New Product</a>
     </div>
     <div class="row">
         @foreach ($products as $product)

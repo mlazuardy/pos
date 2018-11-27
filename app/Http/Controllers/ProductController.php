@@ -69,7 +69,9 @@ class ProductController extends Controller
         $product->fill($validated);
         $image = storage_path('app/public/'.$product->image);
         if($request->file('image')){
-            unlink($image);
+            if(basename($image) != 'default.jpg'){
+                unlink($image);
+            }
             $newImage = $request->file('image');
             $newImage->store('public/products/');
             $product->image = $newImage->hashName('products/');
