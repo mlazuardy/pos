@@ -95,5 +95,6 @@ class ProductController extends Controller
     public function importProducts()
     {
         Excel::import(new ProductsImport,request()->file('excel'));
+        return redirect('/products');
     }
 }
