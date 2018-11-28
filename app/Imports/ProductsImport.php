@@ -27,6 +27,6 @@ class ProductsImport implements ToModel,WithChunkReading,ShouldQueue,WithHeading
 
     public function chunkSize() : int
     {
-        return 500;
+        return 5;
     }
 }
