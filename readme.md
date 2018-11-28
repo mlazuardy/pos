@@ -31,3 +31,10 @@ dan pada saat mengupdate foto, jika ada foto baru yang dimasukkan, maka foto lam
 TDD Tidak diterapkan secara menyeluruh
 ## Dummy Data
 Dummy data menggunakan Seeder, berisi 3 Role dan 3 User
+
+## UPDATE
+LOG USER Jika mencoba masuk ke halaman diluar otoritasnya
+
+## QUEUE UPDATE
+jalankan kembali `php artisan migrate` untuk memasukan table queue , untuk testing queue, import product jika lebih dari 5 maka akan di eksekusi ke queue job
+jalankan `php artisan queue:work`
