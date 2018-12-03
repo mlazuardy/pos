@@ -13132,7 +13132,32 @@ new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             image: ''
         }
     },
-    watch: {}
+    watch: {
+        'product.id': function productId() {
+            if (this.product.id) {
+                this.getProduct();
+            }
+        }
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        $('#product_id').select2({
+            width: '100%'
+        }).on('change', function () {
+            _this.product.id = $('#product_id').val();
+        });
+    },
+
+    methods: {
+        getProduct: function getProduct() {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/products/' + this.product.id).then(function (res) {
+                return _this2.product = res.data;
+            });
+        }
+    }
 });
 
 /***/ })

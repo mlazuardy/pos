@@ -13,6 +13,22 @@ new Vue({
         }
     },
     watch: {
-
+        'product.id': function () {
+            if (this.product.id) {
+                this.getProduct()
+            }
+        }
+    },
+    mounted() {
+        $('#product_id').select2({
+            width: '100%'
+        }).on('change', () => {
+            this.product.id = $('#product_id').val();
+        });
+    },
+    methods: {
+        getProduct(){
+            axios.get(`/api/products/${this.product.id}`).then(res => this.product = res.data)
+        }
     }
 })

@@ -7,7 +7,7 @@
 @php
     $create = Request::is('transactions/create');
 @endphp
-<form action="{{route($create ? 'transactions.store' : 'transactions.update',$transaction->id)}}" method="post">
+<form @submit.prevent="">
     @csrf
     @if (!$create)
         @method("PATCH")

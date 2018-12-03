@@ -16,7 +16,5 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::group(['middleware' => ['auth:api']], function () {
-    Route::get('/products', 'Api\ProductController@index');
-    Route::get('/products/{id}','Api\ProductController@show');
-});
+Route::get('/products', 'Api\ProductController@index');
+Route::get('/products/{id}', 'Api\ProductController@show');
