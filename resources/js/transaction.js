@@ -29,7 +29,12 @@ new Vue({
     },
     methods: {
         getProduct(){
-            axios.get(`/api/products/${this.product.id}`).then(res => {
+            axios.get(`/api/products/${this.product.id}`,{
+                headers:{
+                    'Accept':'application/json',
+                    'Authorization':'Bearer qvXOdIRHOl2Jq7fEr4BjtkbdsK71gG44Fh4kESgDqH2Fja9nzAad2qKYvBaI'
+                }
+            }).then(res => {
                 this.product = res.data;
                 $("#price").val(res.data.price);
             })

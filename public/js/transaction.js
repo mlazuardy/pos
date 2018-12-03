@@ -13153,7 +13153,12 @@ new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         getProduct: function getProduct() {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/products/' + this.product.id).then(function (res) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/products/' + this.product.id, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer qvXOdIRHOl2Jq7fEr4BjtkbdsK71gG44Fh4kESgDqH2Fja9nzAad2qKYvBaI'
+                }
+            }).then(function (res) {
                 _this2.product = res.data;
                 $("#price").val(res.data.price);
             });
