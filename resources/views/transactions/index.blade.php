@@ -1,6 +1,8 @@
 @extends('users.partials._layout')
 @section('dashboard-title','Transactions')
 @section('dashboard-body')
+<personal-access></personal-access>
+<example-component></example-component>
     <div class="text-right mb-3">
         <a href="{{route('transactions.create')}}" class="btn btn-primary">Add Transaction</a>
     </div>
