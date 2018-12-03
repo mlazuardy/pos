@@ -13,10 +13,10 @@
         <tbody>
             @forelse ($details as $item)
                 <tr>
-                    <th scope="row">{{$detail->id}}</th>
-                    <td>{{$trans->product->name}}/td>
-                    <td>{{$trans->price}}</td>
-                    <td>{{$trans->qty}}</td>
+                    <th>{{$item->id}}</th>
+                    <td>{{$item->product->name}}</td>
+                    <td>{{$item->price}}</td>
+                    <td>{{$item->qty}}</td>
                 </tr>
             @empty
                 <tr>
@@ -32,7 +32,7 @@
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
-                                    <form action="" method="post">
+                                    <form action="{{route('detail.store',$trans->id)}}" method="post">
                                         @csrf
                                         <div class="modal-body">
                                             <div class="form-group">
@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
                                         </div>
                                     </form>
                                 </div>
