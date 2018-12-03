@@ -17,7 +17,7 @@
 <script>
     export default {
         mounted() {
-            axios.get('/api/user')
+            axios.get('/api/products/34')
     .then(response => {
         console.log(response.data);
     });
