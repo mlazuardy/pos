@@ -24,9 +24,7 @@ class StoreTransactionRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_id' => 'required',
             'customer_id' => 'required',
-            'quantity' => 'required|numeric|min:1',
         ];
     }
 }

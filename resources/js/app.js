@@ -19,6 +19,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('personal-access',require('./components/passport/PersonalAccessTokens'));
 
 // const files = require.context('./', true, /\.vue$/i)
 

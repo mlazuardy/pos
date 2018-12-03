@@ -1,6 +1,7 @@
 @extends('users.partials._layout')
 @section('dashboard-title','Products')
 @section('dashboard-body')
+<example-component></example-component>
     <div class="text-center mb-3">
         <a href="{{route('products.create')}}" class="btn btn-primary">Create New Product</a>
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">

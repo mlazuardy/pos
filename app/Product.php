@@ -12,13 +12,4 @@ class Product extends Model
     protected $dates = ['deleted_at'];
 
     protected $guarded = [];
-
-    /**
-     * Product Has Many Transaction
-     */
-    public function transactions()
-    {
-        return $this->hasMany('App\Transaction');
-    }
-
 }

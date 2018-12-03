@@ -53,15 +53,28 @@ class TransactionController extends Controller
         return redirect('/transactions');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $trans = Transaction::find($id);
+        $products = Product::where('stock','>',0)->get();
+        $details = $trans->details;
+        return view('transactions.show',compact('trans','details','products'));
+    }
+
+    public function addCustomer()
+    {
+        $customers = Customer::get();
+        return view('transactions.add',compact('customers'));
+    }
+
+    public function saveCustomer(Request $request)
+    {
+        $trans = new Transaction();
+        $trans->customer_id = $request->customer_id;;
+        $trans->total = 0;
+        $trans->user_id = auth()->id();
+        $trans->save();
+        return redirect('/transactions');
     }
 
     /**

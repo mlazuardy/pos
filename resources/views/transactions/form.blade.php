@@ -7,19 +7,18 @@
 @php
     $create = Request::is('transactions/create');
 @endphp
-<form action="{{route($create ? 'transactions.store' : 'transactions.update',$transaction->id)}}" method="post">
-    @csrf
+<form action="#" @submit.prevent="addToCart">
     @if (!$create)
         @method("PATCH")
     @endif
     <div class="form-group">
         <label for="product">Product Name</label>
-        <select name="product_id" class="form-control">
+        <select name="product_id" id="product_id" class="form-control">
              @foreach ($products as $product)
                 @if($create)
-                <option value="{{$product->id}}" {{ $product->id == old( 'product_id') ? 'selected' : '' }} >{{$product->name}}</option>
+                <option value="{{$product->id}}" >{{$product->name}}</option>
                 @else
-                <option value="{{$product->id}}" {{$transaction->product_id == $product->id || $product->id == old('product_id') ? 'selected' :''}} >{{$product->name}}</option>
+                <option value="{{$product->id}}" >{{$product->name}}</option>
                 @endif
             @endforeach
         </select>
@@ -36,9 +35,9 @@
     @endif
     <div class="form-group">
         <label for="quantity">Quantity</label>
-        <input type="number" name="quantity" min="1" value="{{old('quantity',$transaction->quantity)}}" class="form-control">
+        <input type="number" name="qty" min="1" value="1" class="form-control">
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button class="btn btn-primary">Add To Cart</button>
     </div>
 </form>

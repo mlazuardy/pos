@@ -25,4 +25,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::resource('products', 'ProductController');
     Route::resource('customers','CustomerController');
     Route::resource('transactions','TransactionController');
+    Route::get('/transactions/create/customer','TransactionController@addCustomer')->name('addCustomer');
+    Route::post('/transactions/create/customer','TransactionController@saveCustomer')->name('saveCustomer');
+    Route::post('/transaction/create/customer/{id}','TransactionDetailController@store')->name('detail.store');
 });
