@@ -53,15 +53,15 @@ class TransactionController extends Controller
         return redirect('/transactions');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show()
     {
-        //
+
+    }
+
+    public function addCustomer(Request $request)
+    {
+        $customers = Customer::get();
+        return view('transactions.add',compact('customers'));
     }
 
     /**

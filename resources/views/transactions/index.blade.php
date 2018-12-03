@@ -3,7 +3,7 @@
 @section('dashboard-body')
 
     <div class="text-right mb-3">
-        <a href="{{route('transactions.create')}}" class="btn btn-primary">Add Transaction</a>
+        <a href="{{route('addCustomer')}}" class="btn btn-primary">Add Transaction</a>
     </div>
     <table class="table table-bordered">
         <thead>
