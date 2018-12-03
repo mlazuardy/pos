@@ -53,9 +53,11 @@ class TransactionController extends Controller
         return redirect('/transactions');
     }
 
-    public function show()
+    public function show($id)
     {
-
+        $trans = Transaction::find($id);
+        $details = $trans->details;
+        return view('transactions.show',compact('trans','details'));
     }
 
     public function addCustomer()

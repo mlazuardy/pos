@@ -9,10 +9,8 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Product Name</th>
                 <th>Customer Name</th>
-                <th>Quantity</th>
-                <th>Buy At</th>
+                <th>Total</th>
                 <th colspan="3" class="text-center">Action</th>
             </tr>
         </thead>
@@ -21,7 +19,10 @@
             <tr>
                 <th>{{$transaction->id}}</th>
                 <td>{{$transaction->customer->name}}</td>
-                <td>{{$transaction->created_at->diffForHumans()}}</td>
+                <td>{{$transaction->total}}</td>
+                <td>
+                    <a href="{{route('transactions.show',$transaction->id)}}" class="btn btn-primary">Detail</a>
+                </td>
                 <td>
                     <a href="{{route('transactions.edit',$transaction->id)}}" class="btn btn-success">Edit</a>
                 </td>
