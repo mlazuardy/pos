@@ -13130,13 +13130,7 @@ new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             price: '',
             name: '',
             image: ''
-        },
-        cart: {
-            product_id: '',
-            qty: 1
-        },
-        shoppingCart: [],
-        submitCart: false
+        }
     },
     watch: {
         'product.id': function productId() {
@@ -13153,7 +13147,6 @@ new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         }).on('change', function () {
             _this.product.id = $('#product_id').val();
         });
-        this.getCart();
     },
 
     methods: {
@@ -13161,45 +13154,8 @@ new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             var _this2 = this;
 
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/products/' + this.product.id).then(function (res) {
-                return _this2.product = res.data;
-            });
-        },
-        addToCart: function addToCart() {
-            var _this3 = this;
-
-            this.submitCart = true;
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/cart', this.cart).then(function (res) {
-                setTimeout(function () {
-                    _this3.shoppingCart = res.data;
-                    _this3.cart.product_id = '';
-                    _this3.cart.qty = 1;
-                    _this3.product = {
-                        id: "",
-                        price: '',
-                        name: ''
-                    };
-                    $('#product_id').val('');
-                    _this3.submitCart = false;
-                }, 1000);
-            });
-        },
-        getCart: function getCart() {
-            var _this4 = this;
-
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/cart').then(function (res) {
-                return _this4.shoppingCart = res.data;
-            }).catch(function (err) {
-                return console.log(err.response);
-            });
-        },
-        removeCart: function removeCart(id) {
-            var _this5 = this;
-
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/cart/' + id).then(function (response) {
-                //load cart yang baru
-                _this5.getCart();
-            }).catch(function (error) {
-                console.log(error);
+                _this2.product = res.data;
+                $("#price").val(res.data.price);
             });
         }
     }

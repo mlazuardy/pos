@@ -37,11 +37,15 @@
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label for="Product">Product</label>
-                                                <select name="product_id" class="form-control">
+                                                <select name="product_id" id="product_id" class="form-control">
                                                     @foreach ($products as $product)
                                                         <option value="{{$product->id}}">{{$product->name}}</option>
                                                     @endforeach
                                                 </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Price">Price</label>
+                                                <input type="text" id="price" name="price" class="form-control">
                                             </div>
                                             <div class="form-group">
                                                 <label for="qty">Quantity</label>
