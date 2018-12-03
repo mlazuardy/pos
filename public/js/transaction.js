@@ -13186,8 +13186,20 @@ new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         getCart: function getCart() {
             var _this4 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('api/cart').then(function (res) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/cart').then(function (res) {
                 return _this4.shoppingCart = res.data;
+            }).catch(function (err) {
+                return console.log(err.response);
+            });
+        },
+        removeCart: function removeCart(id) {
+            var _this5 = this;
+
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/cart/' + id).then(function (response) {
+                //load cart yang baru
+                _this5.getCart();
+            }).catch(function (error) {
+                console.log(error);
             });
         }
     }

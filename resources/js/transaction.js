@@ -56,7 +56,17 @@ new Vue({
             })
         },
         getCart(){
-            axios.get('api/cart').then(res => this.shoppingCart = res.data)
+            axios.get('/api/cart').then(res => this.shoppingCart = res.data).catch(err => console.log(err.response))
+        },
+        removeCart(id) {
+            axios.delete(`/api/cart/${id}`)
+                .then((response) => {
+                    //load cart yang baru
+                    this.getCart();
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
         }
     }
 })

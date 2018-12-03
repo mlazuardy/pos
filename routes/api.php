@@ -18,3 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('/products', 'Api\ProductController@index')->middleware('auth:api');
 Route::get('/products/{id}', 'Api\ProductController@show');
+Route::post('/cart','TransactionDetailController@addToCart');
+Route::get('/cart','TransactionDetailController@getCart');
+Route::delete('/cart/{id}','TransactionDetailController@removeCart');
