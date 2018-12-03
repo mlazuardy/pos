@@ -15,6 +15,7 @@ class RemoveFieldAgainInTransactionsTable extends Migration
     {
         Schema::table('transactions', function (Blueprint $table) {
             $table->dropColumn('quantity');
+            $table->unsignedInteger('user_id');
         });
     }
 
