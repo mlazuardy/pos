@@ -17,4 +17,9 @@ class TransactionDetail extends Model
     {
         return $this->belongsTo('App\Product');
     }
+
+    public function getPriceAttribute($value)
+    {
+        return 'Rp. '.number_format($value,0);
+    }
 }
