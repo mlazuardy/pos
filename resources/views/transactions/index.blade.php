@@ -13,16 +13,14 @@
                 <th>Customer Name</th>
                 <th>Quantity</th>
                 <th>Buy At</th>
-                <th colspan="2" class="text-center">Action</th>
+                <th colspan="3" class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($transactions as $transaction)
             <tr>
                 <th>{{$transaction->id}}</th>
-                <td>{{$transaction->product->name}}</td>
                 <td>{{$transaction->customer->name}}</td>
-                <td>{{$transaction->quantity}}</td>
                 <td>{{$transaction->created_at->diffForHumans()}}</td>
                 <td>
                     <a href="{{route('transactions.edit',$transaction->id)}}" class="btn btn-success">Edit</a>

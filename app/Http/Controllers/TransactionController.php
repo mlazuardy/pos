@@ -58,10 +58,20 @@ class TransactionController extends Controller
 
     }
 
-    public function addCustomer(Request $request)
+    public function addCustomer()
     {
         $customers = Customer::get();
         return view('transactions.add',compact('customers'));
+    }
+
+    public function saveCustomer(Request $request)
+    {
+        $trans = new Transaction();
+        $trans->customer_id = $request->customer_id;;
+        $trans->total = 0;
+        $trans->user_id = auth()->id();
+        $trans->save();
+        return redirect('/transactions');
     }
 
     /**

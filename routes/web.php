@@ -26,4 +26,5 @@ Route::group(['middleware' => 'auth'],function(){
     Route::resource('customers','CustomerController');
     Route::resource('transactions','TransactionController');
     Route::get('/transactions/create/customer','TransactionController@addCustomer')->name('addCustomer');
+    Route::post('/transactions/create/customer','TransactionController@saveCustomer')->name('saveCustomer');
 });
