@@ -7,8 +7,7 @@
 @php
     $create = Request::is('transactions/create');
 @endphp
-<form @submit.prevent="">
-    @csrf
+<form action="#" @submit.prevent="addToCart">
     @if (!$create)
         @method("PATCH")
     @endif
@@ -39,6 +38,6 @@
         <input type="number" name="qty" min="1" value="1" class="form-control">
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Add To Cart</button>
+        <button class="btn btn-primary">Add To Cart</button>
     </div>
 </form>
