@@ -56,8 +56,9 @@ class TransactionController extends Controller
     public function show($id)
     {
         $trans = Transaction::find($id);
+        $products = Product::where('stock','>',0)->get();
         $details = $trans->details;
-        return view('transactions.show',compact('trans','details'));
+        return view('transactions.show',compact('trans','details','products'));
     }
 
     public function addCustomer()
