@@ -14,14 +14,6 @@ class Transaction extends Model
     protected $guarded = [];
 
     /**
-     * Transaction belongsTo Product
-     */
-    public function product()
-    {
-        return $this->belongsTo('App\Product');
-    }
-
-    /**
      * Transaction belongsTo Customer
      */
     public function customer()
