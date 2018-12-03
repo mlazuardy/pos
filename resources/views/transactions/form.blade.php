@@ -36,7 +36,7 @@
     @endif
     <div class="form-group">
         <label for="quantity">Quantity</label>
-        <input type="number" name="quantity" min="0" value="{{old('quantity',$transaction->quantity)}}" class="form-control">
+        <input type="number" name="quantity" min="1" value="{{old('quantity',$transaction->quantity)}}" class="form-control">
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Save</button>

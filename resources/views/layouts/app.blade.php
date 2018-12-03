@@ -16,6 +16,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
 <body>
     <div id="app">
@@ -75,6 +76,7 @@
         </main>
     </div>
     <script src="{{asset('js/app.js')}}"></script>
+    @yield('js')
     @include('sweet::alert')
 </body>
 </html>
