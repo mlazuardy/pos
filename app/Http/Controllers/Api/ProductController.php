@@ -13,8 +13,9 @@ class ProductController extends Controller
        return Product::all();
     }
 
-    public function show(Product $product)
+    public function show($id)
     {
-        return $product;
+        $product = Product::find($id);
+        return response()->json($product,200);
     }
 }
